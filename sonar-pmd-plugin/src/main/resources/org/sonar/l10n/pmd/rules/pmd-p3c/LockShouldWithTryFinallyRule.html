@@ -1,0 +1,27 @@
+<p>Look for qualified this usages in the same class.</p>
+<p>Examples:</p>
+<pre>
+  Positive example：
+    Lock lock = new XxxLock();
+    // ...
+    lock.lock();
+    try {
+        doSomething();
+        doOthers();
+    } finally {
+        lock.unlock();
+    }
+
+  Negative example：
+    Lock lock = new XxxLock();
+    // ...
+    try {
+        // If an exception is thrown here, the finally block is executed directly
+        doSomething();
+        // The finally block executes regardless of whether the lock is successful or not
+        lock.lock();
+        doOthers();
+    } finally {
+        lock.unlock();
+    }
+</pre>
